@@ -57,7 +57,7 @@ class OAuthService
         }
 
         if(isset($response->error)) {
-            return new OAuthTokenResponse(isset($response->error), $response->error_description, '', '');
+            return new OAuthTokenResponse(isset($response->error), $response->error_description, '', 0);
         }
 
         return new OAuthTokenResponse(false, '', $response->access_token, $response->expires_in);
