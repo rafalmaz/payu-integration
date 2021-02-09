@@ -4,18 +4,8 @@
 namespace App\Model\Response;
 
 
-class OAuthTokenResponse
+class OAuthTokenResponse extends Response
 {
-    /**
-     * @var bool
-     */
-    private $error;
-
-    /**
-     * @var string
-     */
-    private $message;
-
     /**
      * @var string
      */
@@ -34,24 +24,9 @@ class OAuthTokenResponse
      * @param int $expiresIn
      */
     public function __construct(bool $error, string $message, string $token, int $expiresIn) {
-        $this->error = $error;
-        $this->message = $message;
+        parent::__construct($error, $message);
         $this->token = $token;
         $this->expiresIn = $expiresIn;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isError(): bool {
-        return $this->error;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMessage(): string {
-        return $this->message;
     }
 
     /**

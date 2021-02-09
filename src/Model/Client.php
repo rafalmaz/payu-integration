@@ -15,15 +15,27 @@ class Client
      * @var string
      */
     private $clientSecret;
+    /**
+     * @var string
+     */
+    private $secondKey;
+    /**
+     * @var string
+     */
+    private $posId;
 
     /**
      * OAuth constructor.
      * @param string $clientId
      * @param string $clientSecret
+     * @param string $secondKey
+     * @param string $posId
      */
-    public function __construct(string $clientId, string $clientSecret) {
+    public function __construct(string $clientId, string $clientSecret, string $secondKey, string $posId) {
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
+        $this->secondKey = $secondKey;
+        $this->posId = $posId;
     }
 
     /**
@@ -40,4 +52,17 @@ class Client
         return $this->clientSecret;
     }
 
+    /**
+     * @return string
+     */
+    public function getSecondKey(): string {
+        return $this->secondKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPosId(): string {
+        return $this->posId;
+    }
 }
