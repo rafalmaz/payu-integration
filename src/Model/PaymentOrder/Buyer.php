@@ -42,4 +42,39 @@ class Buyer
         $this->lastName = $lastName;
         $this->language = $language;
     }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): string {
+        return $this->email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhone(): string {
+        return $this->phone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName(): string {
+        return $this->firstName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName(): string {
+        return $this->lastName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguage(): string {
+        return $this->language;
+    }
 }

@@ -18,7 +18,7 @@ class OAuthService
     /**
      * @var string
      */
-    private $autorizeUrl;
+    private $authorizeUrl;
 
     /**
      * OAuthService constructor.
@@ -27,7 +27,7 @@ class OAuthService
      */
     public function __construct(Client $client, string $env) {
         $this->client = $client;
-        $this->autorizeUrl = OAuthEnvTypeEnum::getAuthorizeUrl($env);
+        $this->authorizeUrl = OAuthEnvTypeEnum::getAuthorizeUrl($env);
     }
 
     /**
@@ -43,7 +43,7 @@ class OAuthService
 
             $data = http_build_query($post, '', '&');
 
-            $ch = curl_init($this->autorizeUrl);
+            $ch = curl_init($this->authorizeUrl);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 

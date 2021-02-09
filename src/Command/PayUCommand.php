@@ -11,6 +11,7 @@ use App\Model\PaymentOrder\PaymentOrder;
 use App\Model\PaymentOrder\Product;
 use App\Service\OAuthService;
 use App\Service\PayUService;
+use App\Service\SignatureService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -30,23 +31,25 @@ class PayUCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $Client = new Client('', '');
+        $Client = new Client('300746', '2ee86a66e5d97e3fadc400c9f19b065d', '507f311d8784dc0765a72fc40d0aa83a', '145227');
         $OAuth = new OAuthService($Client, OAuthEnvTypeEnum::DEV);
+        $SignatureService = new SignatureService($Client->getSecondKey(), $Client->getPosId());
         $TokenResponse = $OAuth->getToken();
 
-        $PayUService = new PayUService($Client, $TokenResponse->getToken());
+        $PayUService = new PayUService($Client, $TokenResponse->getToken(), $SignatureService);
 
         $buyer = new Buyer('jan_kowalski@test.pl', '123456789', 'Jan', 'Kowalsk');
 
-        $products[] = new Product('product1', 1000, 5);
+        $products[] = new Product('Produkt 1', 1000, 1);
 
         $order = new PaymentOrder(
-            'test@test.pl',
-            "127.0.0.1",
+            'http://shop.url/notify',
+            'http://shop.url/continue',
+            "123.123.123.123",
             $Client->getClientId(),
-            'test',
+            'Opis zamówienia',
             'PLN',
-            10000,
+            1000,
             $buyer,
             $products
         );

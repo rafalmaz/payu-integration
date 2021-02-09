@@ -9,15 +9,15 @@ class Product
     /**
      * @var string
      */
-    public $name;
+    private $name;
     /**
      * @var string
      */
-    public $unitPrice;
+    private $unitPrice;
     /**
      * @var string
      */
-    public $quantity;
+    private $quantity;
 
     /**
      * PaymentOrderProduct constructor.
@@ -31,4 +31,24 @@ class Product
         $this->quantity = $quantity;
     }
 
+    /**
+     * @return string
+     */
+    public function getName(): string {
+        return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUnitPrice(): string {
+        return $this->unitPrice;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQuantity(): string {
+        return $this->quantity;
+    }
 }
